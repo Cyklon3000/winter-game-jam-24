@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvb0ka3260xo0"]
+
+[ext_resource type="Script" path="res://scripts/orbitPivot.gd" id="1_eiblw"]
+[ext_resource type="Script" path="res://scripts/globe.gd" id="2_q6e3x"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yosxb"]
+cull_mode = 2
+albedo_color = Color(0.536, 0.67, 0.658833, 0.109804)
+
+[sub_resource type="BoxMesh" id="BoxMesh_tlnk1"]
+material = SubResource("StandardMaterial3D_yosxb")
+size = Vector3(3, 3, 3)
+
+[node name="MainScene" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+script = ExtResource("1_eiblw")
+rotationSpeed = null
+dampingFactor = null
+
+[node name="MainGlobe" type="MeshInstance3D" parent="."]
+transform = Transform3D(0.999999, -0.000874134, -0.000853103, 0.000875174, 0.999999, 0.00119697, 0.000852036, -0.00119773, 0.999999, 0, 0, 0)
+mesh = SubResource("BoxMesh_tlnk1")
+script = ExtResource("2_q6e3x")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.969766, -0.143032, 0.197729, -0.244038, -0.568383, 0.785739, 2.17711e-08, -0.810236, -0.586104, 0, 0, 0)
