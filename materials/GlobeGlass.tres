@@ -1,0 +1,12 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://oj7c3kn7m5nb"]
+
+[resource]
+resource_name = "GlobeGlass"
+transparency = 1
+blend_mode = 1
+albedo_color = Color(1, 1, 1, 0.0980392)
+metallic = 0.65
+metallic_specular = 0.75
+roughness = 0.58
+clearcoat_enabled = true
+clearcoat_roughness = 0.6

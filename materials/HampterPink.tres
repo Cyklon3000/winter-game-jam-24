@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cu478indv2ixp"]
+
+[resource]
+resource_name = "HampterPink"
+cull_mode = 2
+albedo_color = Color(0.738093, 0.513293, 0.744082, 1)

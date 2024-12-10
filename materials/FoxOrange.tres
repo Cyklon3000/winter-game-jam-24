@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://xgjrj4jkhbug"]
+
+[resource]
+resource_name = "FoxOrange"
+cull_mode = 2
+albedo_color = Color(0.801347, 0.380885, 0.158665, 1)

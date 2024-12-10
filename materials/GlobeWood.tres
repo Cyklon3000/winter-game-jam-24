@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b30fmjg3uaauw"]
+
+[resource]
+resource_name = "GlobeWood"
+cull_mode = 2
+albedo_color = Color(0.193175, 0.146055, 0.121226, 1)

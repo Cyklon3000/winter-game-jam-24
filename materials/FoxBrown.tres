@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cn2bgxtmt5cbt"]
+
+[resource]
+resource_name = "FoxBrown"
+cull_mode = 2
+albedo_color = Color(0.250004, 0.188976, 0.14702, 1)

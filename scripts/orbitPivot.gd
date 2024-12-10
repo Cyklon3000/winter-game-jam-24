@@ -1,6 +1,6 @@
 extends Camera3D
 
-var currentPivot: StaticBody3D # The pivot to orbit around
+var currentPivot: Node3D # The pivot to orbit around
 
 var orbitTarget: Vector3
 var orbitDistance: float
@@ -10,17 +10,20 @@ var dampingProgress: float = 0
 
 var rotationVelocity: Vector2 = Vector2.ZERO
 
-var heightClamp: Array[float]
-
 func _ready():
-	_set_new_pivot_(get_node("../SnowGlobe2"))
+	_set_new_pivot_(get_node("../SnowGlobe"))
 
-func _set_new_pivot_(pivot: StaticBody3D):
+func _set_new_pivot_(pivot: Node3D):
 	currentPivot = pivot
 
 	orbitTarget = currentPivot.global_position + currentPivot.orbitPivot
 	orbitDistance = currentPivot.orbitDistance
-	heightClamp = currentPivot.heightClamp
+
+func _get_height_clamp_(orbitDistance:float) -> Array[float]:
+	return [
+		orbitTarget.y + currentPivot.heightClamp[0] * orbitDistance, 
+		orbitTarget.y + currentPivot.heightClamp[1] * orbitDistance
+	]
 
 func _input(event: InputEvent) -> void:	
 	# Orbit Movement (Right Click Drag)
@@ -56,21 +59,17 @@ func _input(event: InputEvent) -> void:
 func _process(delta):
 	# Apply Orbit Movement 
 	dampingProgress += delta * dampingSpeed
-	position += transform.basis.x.normalized() * rotationVelocity.x * _ease_in_out_cube_(1-dampingProgress)
-	position -= transform.basis.y.normalized() * rotationVelocity.y * _ease_in_out_cube_(1-dampingProgress)
+	position += transform.basis.x.normalized() * rotationVelocity.x * ease(1-dampingProgress, 0.8)
+	position -= transform.basis.y.normalized() * rotationVelocity.y * ease(1-dampingProgress, 0.8)
 
-	# Limit Movement in height (Not related with bug)
-	#if position.y < (orbitTarget.y + heightClamp[0]) * orbitDistance:
-		#position.y = (orbitTarget.y + heightClamp[0]) * orbitDistance
-	#if position.y > (orbitTarget.y + heightClamp[1]) * orbitDistance:
-		#position.y = (orbitTarget.y + heightClamp[1]) * orbitDistance
+	# Limit Movement in height
+	var heightClamp:Array[float] = _get_height_clamp_(orbitDistance)
+	if position.y < heightClamp[0]:
+		position.y = heightClamp[0]
+	if position.y > heightClamp[1]:
+		position.y = heightClamp[1]
 
-	look_at(orbitTarget) # Does always look at (0,0,0)
-	print("look_at : " + str(orbitTarget))
+	look_at(orbitTarget, Vector3.UP) # Does always look at (0,0,0)
 
 	# Fix distance from target to orbitDistance
-	position = (position - orbitTarget).normalized() * orbitDistance
-
-func _ease_in_out_cube_(x:float) -> float:
-	x = min(1, x)
-	return max(0, 4 * x * x * x if x < 0.5 else 1 - pow(-2 * x + 2, 3) / 2);
+	position = orbitTarget + (position - orbitTarget).normalized() * orbitDistance
