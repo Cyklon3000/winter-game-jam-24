@@ -3,7 +3,7 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://b1houmimn4ylf"
+uid="uid://bv57nre6hthcq"
 path="res://.godot/imported/winterJamAssets.blend-e64b8f80121dc1b9e1c512ba10ac9971.scn"
 
 [deps]
@@ -31,46 +31,7 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={
-"materials": {
-"DeskWood": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/DeskWood.tres"
-},
-"FoxBrown": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/FoxBrown.tres"
-},
-"FoxOrange": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/FoxOrange.tres"
-},
-"FurWhite": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/FurWhite.tres"
-},
-"GlobeGlass": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/GlobeGlass.tres"
-},
-"GlobeWood": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/GlobeWood.tres"
-},
-"HampterGray": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/HampterGray.tres"
-},
-"HampterPink": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/HampterPink.tres"
-},
-"Tree_Pine": {
-"use_external/enabled": true,
-"use_external/path": "res://materials/Tree_Pine.tres"
-}
-}
-}
+_subresources={}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

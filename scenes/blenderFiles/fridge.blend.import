@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://u21iqijvpetu"
-path="res://.godot/imported/winterJamAssets.blend-f86c9cf96ff6d3445a473a8f903aab31.scn"
+uid="uid://bbjtqs7jdlg7v"
+path="res://.godot/imported/fridge.blend-5510fbb09e13144cc7958127cf2664f3.scn"
 
 [deps]
 
-source_file="res://winterJamAssets.blend"
-dest_files=["res://.godot/imported/winterJamAssets.blend-f86c9cf96ff6d3445a473a8f903aab31.scn"]
+source_file="res://scenes/blenderFiles/fridge.blend"
+dest_files=["res://.godot/imported/fridge.blend-5510fbb09e13144cc7958127cf2664f3.scn"]
 
 [params]
 
@@ -31,7 +31,38 @@ animation/trimming=false
 animation/remove_immutable_tracks=true
 animation/import_rest_as_RESET=false
 import_script/path=""
-_subresources={}
+_subresources={
+"materials": {
+"Fridge_Base": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Fridge_Base.tres"
+},
+"Fridge_Note": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Fridge_Note.tres"
+},
+"Fridge_Orange": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Fridge_Orange.tres"
+},
+"Fridge_OrangeStem": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Fridge_OrangeStem.tres"
+},
+"Fridge_RubberFeet": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Fridge_RubberFeet.tres"
+},
+"Fridge_Shelf": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Fridge_Shelf.tres"
+},
+"Ink": {
+"use_external/enabled": true,
+"use_external/path": "res://materials/Ink.tres"
+}
+}
+}
 blender/nodes/visible=0
 blender/nodes/active_collection_only=false
 blender/nodes/punctual_lights=true

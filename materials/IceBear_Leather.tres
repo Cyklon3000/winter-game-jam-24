@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://p46pwxyhwt3q"]
+
+[resource]
+resource_name = "IceBear_Leather"
+cull_mode = 2
+albedo_color = Color(0.215903, 0.181514, 0.152248, 1)

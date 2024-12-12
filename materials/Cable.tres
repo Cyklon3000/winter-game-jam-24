@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c65uym3q7leuf"]
+
+[resource]
+resource_name = "Cable"
+cull_mode = 2
+albedo_color = Color(0.111306, 0.116543, 0.119313, 1)

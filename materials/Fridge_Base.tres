@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dg3umja4i7rrx"]
+
+[resource]
+resource_name = "Fridge_Base"
+cull_mode = 2
+albedo_color = Color(0.885142, 0.886425, 0.909192, 1)

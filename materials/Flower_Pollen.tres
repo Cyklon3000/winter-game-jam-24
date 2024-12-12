@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://c0qm0oil445lw"]
+
+[resource]
+resource_name = "Flower_Pollen"
+cull_mode = 2
+albedo_color = Color(0.840919, 0.833759, 0.395159, 1)
+roughness = 0.5

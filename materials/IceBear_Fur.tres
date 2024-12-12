@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dupmuy1f7qqlf"]
+
+[resource]
+resource_name = "IceBear_Fur"
+cull_mode = 2
+albedo_color = Color(0.829547, 0.829547, 0.829547, 1)

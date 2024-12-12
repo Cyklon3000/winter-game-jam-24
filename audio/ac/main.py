@@ -17,7 +17,11 @@ def concatenate_letter_sounds(input_string, input_folder, output_file='output.wa
     audio_segments = []
     
     # Process each letter
+    previous_segment = None
     for i, letter in enumerate(input_string):
+        if previous_segment is None:
+            previous_segment = AudioSegment.empty()
+        
         # Construct the file path for the current letter
         file_path = os.path.join(input_folder, f"{letter}.wav")
         
@@ -35,8 +39,7 @@ def concatenate_letter_sounds(input_string, input_folder, output_file='output.wa
             overlap_duration = int(len(previous_segment) * overlap_percentage)
             
             # Adjust the current segment to start during the previous segment
-            current_segment = current_segment.overlay(previous_segment, 
-                                                      position=-overlap_duration)
+            current_segment = current_segment.overlay(previous_segment, position=-overlap_duration)
         
         # Add to the list of segments
         audio_segments.append(current_segment)
@@ -57,8 +60,8 @@ def concatenate_letter_sounds(input_string, input_folder, output_file='output.wa
 # Example usage
 if __name__ == "__main__":
     # Example parameters
-    input_string = "Hallo. Ich brauche deine Hilfe bei einer kleinen Unternehmung. Mir ist in letzter Zeit etwas kalt geworden."  # The string to convert to audio
-    input_string = input_string.replace(" ", "").replace(".", "___")
+    input_string = "This Is a lengthy Text i guess i have \nto keep on going. \nAnd going I am! All the way to the moon or something like this."  # The string to convert to audio
+    input_string = input_string.replace(" ", "").replace(".", "___").replace("\n", "")
     input_folder = "letter_sounds_processed"  # Folder containing individual letter .wav files
     output_file = "output.wav"  # Name of the output file
     

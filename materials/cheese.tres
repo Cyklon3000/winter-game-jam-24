@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bw1djocptaibl"]
+
+[resource]
+resource_name = "cheese"
+cull_mode = 2
+albedo_color = Color(0.906536, 0.725551, 0.293962, 1)
+roughness = 0.0

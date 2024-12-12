@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://37wycfg8h3b3"]
+
+[resource]
+resource_name = "Heater_Outside"
+cull_mode = 2
+albedo_color = Color(0.206673, 0.216421, 0.221584, 1)

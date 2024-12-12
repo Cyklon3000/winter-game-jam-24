@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b4j4n0w27ykeh"]
+
+[resource]
+resource_name = "WindTurbine_Green3"
+cull_mode = 2
+albedo_color = Color(0.440718, 0.573863, 0.381043, 1)

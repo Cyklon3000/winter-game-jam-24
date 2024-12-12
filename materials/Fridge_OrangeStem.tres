@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d3ugy10dcyeba"]
+
+[resource]
+resource_name = "Fridge_OrangeStem"
+cull_mode = 2
+albedo_color = Color(0.364906, 0.426133, 0.367632, 1)

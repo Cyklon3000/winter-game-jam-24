@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bewmfyx8asvie"]
+
+[resource]
+resource_name = "RustyScrew_Base"
+cull_mode = 2
+albedo_color = Color(0.3409, 0.253511, 0.227723, 1)

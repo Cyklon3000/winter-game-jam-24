@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dqv7o8d2l7bji"]
+
+[resource]
+resource_name = "Fridge_Shelf"
+cull_mode = 2
+albedo_color = Color(0.551132, 0.551132, 0.551132, 1)

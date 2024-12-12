@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://d25mxwq1asdvo"]
+
+[resource]
+resource_name = "Heater_Coil"
+cull_mode = 2
+albedo_color = Color(0.2159, 0.160824, 0.125286, 1)
+emission_enabled = true
+emission = Color(0.846592, 0.225779, 0.170684, 1)
+emission_energy_multiplier = 0.0

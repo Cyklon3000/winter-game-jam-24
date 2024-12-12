@@ -1,0 +1,7 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://8rs7bpqcmu65"]
+
+[resource]
+resource_name = "Flower2_Pedals"
+cull_mode = 2
+albedo_color = Color(0.906335, 0.404097, 0.404097, 1)
+roughness = 0.5
