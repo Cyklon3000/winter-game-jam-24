@@ -9,6 +9,8 @@ var hasInteracted: bool = false
 
 @export var hoverCursorShape: Input.CursorShape
 
+@onready var rayCastCollider: StaticBody3D = $StaticBody3D
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -27,6 +29,10 @@ func _input(event: InputEvent) -> void:
 		play_sound()
 		
 	hasInteracted = true
+	
+	# Shitty code ahead
+	rayCastCollider.scale = 0.0001 * Vector3.ONE
+	rayCastCollider.global_position = Vector3.ZERO
 
 
 func play_sound() -> void:

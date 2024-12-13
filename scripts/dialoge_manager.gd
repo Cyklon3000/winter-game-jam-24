@@ -69,6 +69,9 @@ func show_dialoge(dialoge: Array[String], dialogeProgress: int, duration: float 
 		animationDuration = len(areaText) * 0.025
 	
 	visible = true
+	get_viewport().get_camera_3d().isRaycastActive = false
+	print("Raycasts diabled")
+	
 	button.disabled = true
 
 
@@ -120,6 +123,8 @@ func get_ending(input_string: String, n: int) -> String:
 
 func _on_continue_button_pressed() -> void:
 	visible = false
+	get_viewport().get_camera_3d().isRaycastActive = true
+	print("Raycasts enabled")
 	
 	if lastDialogeProgress == len(lastDialoge) - 1:
 		print("Unlocking next Globe")

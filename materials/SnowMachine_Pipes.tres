@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bbrbpe4v5koit"]
+
+[resource]
+resource_name = "SnowMachine_Pipes"
+cull_mode = 2
+albedo_color = Color(0.906517, 0.586104, 0.466442, 1)
+metallic = 0.75
+roughness = 0.5

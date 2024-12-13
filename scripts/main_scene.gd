@@ -1,8 +1,35 @@
 extends Node3D
 
+var startedSince: float = 0
+@onready var thanksMessage: Control = $ThanksMessage
+
+var hasWon: bool = false
+var wonSince: float = 0
+
+@onready var camera: Camera3D = get_viewport().get_camera_3d()
+
+var snowColor: Color = Color(0.871, 0.918, 0.937)
+var snowAnimationDuration: float = 8.0 
+@export var snowifyMaterials: Array[StandardMaterial3D]
+var snowifyMaterialsOriginalAlbedo: Array[Color]
+
+var zoomSpeed: float = 0.3
+
+var lightingAnimationDuration: float = 37.5
+var lightingAnimationMultplier: float = 0.25
+var lightingFadeOutDuration: float = 1.75
+@onready var worldEnviornment: WorldEnvironment = $WorldEnvironment
+@onready var directionalLight: DirectionalLight3D = $DirectionalLight3D
+@onready var welcomeMessage: Control = $WelcomeMessage
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	initialise_cursors()
+	
+	initialise_animation()
+
+
+func initialise_cursors() -> void:
 	Input.set_custom_mouse_cursor(
 		load("res://textures/cursors/hand_open.png"),
 		Input.CURSOR_ARROW,
@@ -53,8 +80,78 @@ func _ready() -> void:
 		Input.CURSOR_WAIT,
 		Vector2(16, 16)
 	)
+	print("Cursors instatiated")
 
 
+func initialise_animation() -> void:
+	for material: StandardMaterial3D in snowifyMaterials:
+		snowifyMaterialsOriginalAlbedo.append(material.albedo_color)
+	
+	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	startedSince += delta
+	animate_welcome_message()
+	
+	if hasWon:
+		wonSince += delta
+		
+		animate_snow()
+		animate_zoom(delta)
+		animate_lighting()
+
+
+func animate_welcome_message() -> void:
+	welcomeMessage.modulate.a = clamp(inverse_lerp(6, 5, startedSince), 0, 1)
+
+
+func animate_snow() -> void:	
+	var snowAnimationProgress: float = clampf(inverse_lerp(0, snowAnimationDuration, wonSince), 0, 1)
+	
+	for index in range(len(snowifyMaterials)):
+		var snowifyMaterial: StandardMaterial3D = snowifyMaterials[index]
+		var initialAlbedo: Color = snowifyMaterialsOriginalAlbedo[index]
+		
+		snowifyMaterial.albedo_color = initialAlbedo.lerp(snowColor, snowAnimationProgress)
+
+
+func animate_zoom(delta: float) -> void:
+	camera.orbitDistance += camera.orbitDistance * zoomSpeed * delta
+
+func animate_lighting() -> void:
+	var lightingAnimationProgress: float = clampf(inverse_lerp(0, lightingAnimationDuration, wonSince), 0, 1)
+	
+	var energy: float = lerpf(1, lightingAnimationMultplier, ease(lightingAnimationProgress, .8))
+	worldEnviornment.environment.set("background_energy_multiplier", energy)
+	worldEnviornment.environment.set("ambient_light_energy", energy)
+	directionalLight.light_energy = energy
+	
+	if lightingAnimationProgress < 1: return
+	# Fade out
+	lightingAnimationProgress = clampf(
+		inverse_lerp(lightingAnimationDuration, lightingAnimationDuration + lightingFadeOutDuration, wonSince),
+		0, 1)
+		
+	energy = lerpf(lightingAnimationMultplier, 0, lightingAnimationProgress)
+	worldEnviornment.environment.set("background_energy_multiplier", energy)
+	worldEnviornment.environment.set("ambient_light_energy", energy)
+	directionalLight.light_energy = energy
+	
+	thanksMessage.modulate.a = lightingAnimationProgress
+
+
+func start_snow() -> void:
+	var snowGlobes: Array[Node] = get_tree().get_nodes_in_group("SnowGlobe")
+	
+	for snowGlobe: Globe in snowGlobes:
+		snowGlobe.start_snow()
+
+
+func has_won() -> void:
+	hasWon = true
+	get_viewport().get_camera_3d().isRaycastActive = false
+	
+	camera.position = Vector3(212.9612, 752.3766, 291.2384) # Start position
+	camera.set_new_pivot(null)
+	
+	start_snow()

@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://cfvx6mjfrqctf"]
+
+[resource]
+resource_name = "Elf_Cloth2"
+cull_mode = 2
+albedo_color = Color(0.235573, 0.545449, 0.263564, 1)

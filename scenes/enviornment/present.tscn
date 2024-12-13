@@ -88,7 +88,7 @@ hoverCursorShape = 7
 
 [node name="PresentMaterialRandomizer" type="Node3D" parent="."]
 script = ExtResource("2_0qt0b")
-materialOptions = Array[StandardMaterial3D]([ExtResource("3_lcdyh"), ExtResource("4_fvtp3"), ExtResource("5_3eoq0"), ExtResource("6_lhffa"), ExtResource("7_tg8no")])
+materialOptions = Array[StandardMaterial3D]([ExtResource("4_fvtp3"), ExtResource("3_lcdyh"), ExtResource("5_3eoq0"), ExtResource("6_lhffa"), ExtResource("7_tg8no")])
 
 [node name="Present_Paper" type="MeshInstance3D" parent="PresentMaterialRandomizer"]
 transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, 0.375, 0)

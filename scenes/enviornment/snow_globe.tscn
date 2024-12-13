@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://c2702vw1ipn01"]
+[gd_scene load_steps=16 format=4 uid="uid://c2702vw1ipn01"]
 
 [ext_resource type="Material" uid="uid://oj7c3kn7m5nb" path="res://materials/GlobeGlass.tres" id="1_vxjrf"]
 [ext_resource type="Script" path="res://scripts/globe.gd" id="1_wftlc"]
@@ -109,10 +109,41 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_5hhmt")
 
 [sub_resource type="CylinderShape3D" id="CylinderShape3D_71ly5"]
-height = 7.0
-radius = 6.0
+height = 8.0
+radius = 5.0
 
-[node name="SnowGlobe" type="Node3D"]
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yuseu"]
+emission_shape_scale = Vector3(1, 1.133, 1)
+emission_shape = 2
+emission_sphere_radius = 4.43
+angle_min = 1.07288e-05
+angle_max = 360.0
+direction = Vector3(0, -1, 0)
+spread = 17.5
+initial_velocity_min = 0.45
+initial_velocity_max = 1.15
+angular_velocity_min = -30.0
+angular_velocity_max = 30.0
+gravity = Vector3(0, -0.05, 0)
+scale_min = 10.0
+scale_max = 10.0
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lae73"]
+transparency = 1
+albedo_color = Color(1, 1, 1, 0.498039)
+emission = Color(0.758192, 0.758192, 0.758192, 1)
+billboard_mode = 3
+billboard_keep_scale = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="QuadMesh" id="QuadMesh_tpr2w"]
+material = SubResource("StandardMaterial3D_lae73")
+size = Vector2(0.3, 0.3)
+
+[node name="SnowGlobe" type="Node3D" groups=["SnowGlobe"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.76837e-07)
 script = ExtResource("1_wftlc")
 
@@ -134,5 +165,21 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00791264, 3.05037, -0.00582504)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.00791264, 4.05037, -0.00582504)
 shape = SubResource("CylinderShape3D_71ly5")
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, 0)
+emitting = false
+amount = 5000
+lifetime = 10.0
+process_material = SubResource("ParticleProcessMaterial_yuseu")
+draw_pass_1 = SubResource("QuadMesh_tpr2w")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012146, -3.78206, 0)
+size = Vector3(15, 5, 13)
+
+[node name="GPUParticlesCollisionBox3D2" type="GPUParticlesCollisionBox3D" parent="GPUParticles3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012146, 5.21794, 0)
+size = Vector3(10, 0.1, 10)

@@ -1,9 +1,6 @@
-[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://g701aj55slho"]
-
-[ext_resource type="Texture2D" uid="uid://c7dmwgqx6luyu" path="res://textures/Cylinder Base Color.png" id="1_v6utc"]
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bwqp8m35aghfg"]
 
 [resource]
-resource_name = "Tree_Pine"
+resource_name = "Material"
 cull_mode = 2
-albedo_texture = ExtResource("1_v6utc")
-roughness = 0.5
+albedo_color = Color(0.302945, 0.465595, 0.242311, 1)

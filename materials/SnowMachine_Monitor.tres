@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://6ibgrypmurmp"]
+
+[resource]
+resource_name = "SnowMachine_Monitor"
+cull_mode = 2
+albedo_color = Color(0.14772, 0.14772, 0.14772, 1)

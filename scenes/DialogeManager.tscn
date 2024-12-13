@@ -1,7 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://bmij2ejfkgoh8"]
+[gd_scene load_steps=4 format=3 uid="uid://bmij2ejfkgoh8"]
 
 [ext_resource type="Script" path="res://scripts/dialoge_manager.gd" id="1_uyykl"]
-[ext_resource type="Texture2D" uid="uid://bb4xwalka2fon" path="res://icon.svg" id="2_ysbxc"]
 [ext_resource type="AudioStream" uid="uid://dbacumk57h7i3" path="res://audio/plop/plop2.wav" id="3_6ko8d"]
 [ext_resource type="AudioStream" uid="uid://dl8nmn4yx5l0i" path="res://audio/plop/plop3.wav" id="4_3xwqr"]
 
@@ -37,7 +36,6 @@ theme_override_constants/separation = 10
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-texture = ExtResource("2_ysbxc")
 expand_mode = 1
 
 [node name="Panel" type="Panel" parent="MarginContainer/HBoxContainer"]
@@ -69,8 +67,9 @@ unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_stretch_ratio = 0.3
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 30
-text = "Continue"
+text = "Schließen"
 
 [node name="Sounds" type="Node" parent="."]
 

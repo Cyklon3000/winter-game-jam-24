@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://b5jvbn4vnvsbv"]
+
+[resource]
+resource_name = "Elf_Contrast"
+cull_mode = 2
+albedo_color = Color(0.198855, 0.099229, 0.0530685, 1)

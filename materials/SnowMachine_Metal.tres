@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dob2g1cydoshu"]
+
+[resource]
+resource_name = "SnowMachine_Metal"
+cull_mode = 2
+albedo_color = Color(0.670446, 0.670446, 0.670446, 1)
+metallic = 0.75
+roughness = 0.5

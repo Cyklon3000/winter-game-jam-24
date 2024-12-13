@@ -3,9 +3,13 @@ extends Camera3D
 var allowedPivotDepth: int = 1
 var currentPivot: Node3D # The pivot to orbit around
 
+@onready var largestSnowglobe: Node3D = %SnowGlobe1
+
 var orbitTarget: Vector3 = Vector3.ZERO
 var orbitDistance: float
-@export var rotationSpeed: float = 0.003
+var minOrbitDistance: float = 0.014
+var maxOrbitDistance: float = 1300
+@export var rotationSpeed: float = 0.00175
 var dampingProgress: float = 0
 @export var dampingSpeed: float = 2
 var rotationVelocity: Vector2 = Vector2.ZERO
@@ -14,17 +18,20 @@ var wasDraggingLastTime: bool = false
 var wasHoveringGlobeLastTime: bool = false
 
 var lastRaycastResult:Dictionary
+var isRaycastActive:bool = true
 
 func _ready():
-	_set_new_pivot_(%SnowGlobe1)
-	orbitTarget = %SnowGlobe1/Pivot.global_position
+	set_new_pivot(largestSnowglobe)
+	orbitTarget = largestSnowglobe.get_node("Pivot").global_position
 
 
-func _set_new_pivot_(pivot: Globe):
-	currentPivot = pivot
+func set_new_pivot(pivot: Globe):
+	if pivot != null:
+		currentPivot = pivot
 
-	orbitDistance = (currentPivot.orbitPivot - position).length()
 	orbitTarget = currentPivot.orbitPivot
+	orbitDistance = (orbitTarget - position).length()
+
 
 func _get_height_clamp_(orbitDistance:float) -> Array[float]:
 	return [
@@ -47,9 +54,10 @@ func _input(event: InputEvent) -> void:
 	
 	# Orbit Size (Scroll)
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
-		orbitDistance *= 1.025
+		orbitDistance *= 1.020
 	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_WHEEL_UP:
-		orbitDistance /= 1.025
+		orbitDistance /= 1.020
+	orbitDistance = clamp(orbitDistance, minOrbitDistance, maxOrbitDistance)
 	
 	# Change Pivot (Left Click)
 	var hoveredObject = get_last_raycast_object()
@@ -63,7 +71,7 @@ func _input(event: InputEvent) -> void:
 			Input.set_default_cursor_shape(Input.CURSOR_WAIT)
 		elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
 			print("New pivot object: ", hoveredGlobe.name)
-			_set_new_pivot_(hoveredGlobe)
+			set_new_pivot(hoveredGlobe)
 		
 	elif wasHoveringGlobeLastTime:
 		Input.set_default_cursor_shape(Input.CURSOR_ARROW)
@@ -101,8 +109,9 @@ func _raycast_() -> void:
 	
 	lastRaycastResult = space_state.intersect_ray(query)
 
+
 func get_last_raycast_object() -> Node3D:
-	if not lastRaycastResult:
+	if not lastRaycastResult or not isRaycastActive:
 		return null
 	return lastRaycastResult["collider"].get_parent()
 
@@ -110,4 +119,3 @@ func get_last_raycast_object() -> Node3D:
 func _process(delta):
 	_orbit_pivot_(delta)
 	_raycast_()
-	#print(position)

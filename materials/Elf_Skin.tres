@@ -1,0 +1,6 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://dtd0vbmc16tkc"]
+
+[resource]
+resource_name = "Elf_Skin"
+cull_mode = 2
+albedo_color = Color(0.710216, 0.536749, 0.459263, 1)
