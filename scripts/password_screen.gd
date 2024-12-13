@@ -15,6 +15,11 @@ var rightColor: Color = Color.GREEN_YELLOW
 
 @export var chargeSound: AudioStreamPlayer
 
+var keyPressSoundIndex: int = 0
+@export var keyPressSounds: Array[AudioStreamPlayer]
+
+var maxDistance: float = 0.05
+
 func _ready():
 	set_process_input(true)
 	textArea.text = ""
@@ -23,7 +28,7 @@ func _ready():
 
 func _input(event):
 	if isPasswordCorrect: return
-	if (get_viewport().get_camera_3d().global_position - global_position).length() >= 0.05: return
+	if (get_viewport().get_camera_3d().global_position - global_position).length() >= maxDistance: return
 	
 	if event is InputEventKey and event.pressed:
 		handle_key_input(event)
@@ -44,8 +49,27 @@ func handle_key_input(event: InputEventKey):
 	elif event.keycode == KEY_BACKSPACE:
 		if current_input.length() > 0:
 			current_input = current_input.substr(0, current_input.length() - 1)
+	
+	else: return
 
+	play_key_press_sound()
 	validate_password()
+
+
+func play_key_press_sound(pitch_variation: float = 0.05) -> void:
+	# Select any except last
+	keyPressSoundIndex = (keyPressSoundIndex + (1 + randi() % (len(keyPressSounds) - 1))) % len(keyPressSounds)
+	var selected_sound = keyPressSounds[keyPressSoundIndex]
+	
+	var original_pitch = selected_sound.pitch_scale
+	selected_sound.pitch_scale = original_pitch * randf_range(1 - pitch_variation, 1 + pitch_variation)
+	
+	selected_sound.play()
+	
+	# Reset pitch back to original after playing
+	await selected_sound.finished
+	selected_sound.pitch_scale = original_pitch
+
 
 func update_display():
 	if len(current_input) > 0:
@@ -56,7 +80,7 @@ func update_display():
 	textArea.text += current_input
 	if int(1.6 * Time.get_unix_time_from_system()) % 2 == 0 \
 	and len(current_input) < 10 \
-	and (get_viewport().get_camera_3d().global_position - global_position).length() < 0.05:
+	and (get_viewport().get_camera_3d().global_position - global_position).length() < maxDistance:
 		textArea.text += "|"
 	else:
 		textArea.text += " "

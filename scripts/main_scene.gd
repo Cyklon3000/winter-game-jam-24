@@ -84,14 +84,17 @@ func initialise_cursors() -> void:
 
 
 func initialise_animation() -> void:
+	camera.isRaycastActive = false
+	
 	for material: StandardMaterial3D in snowifyMaterials:
 		snowifyMaterialsOriginalAlbedo.append(material.albedo_color)
 	
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	startedSince += delta
-	animate_welcome_message()
+	if startedSince < 6:
+		startedSince += delta
+		animate_welcome_message()
 	
 	if hasWon:
 		wonSince += delta
@@ -103,6 +106,9 @@ func _process(delta: float) -> void:
 
 func animate_welcome_message() -> void:
 	welcomeMessage.modulate.a = clamp(inverse_lerp(6, 5, startedSince), 0, 1)
+	
+	if startedSince >= 6:
+		camera.isRaycastActive = true
 
 
 func animate_snow() -> void:	
@@ -151,7 +157,7 @@ func has_won() -> void:
 	hasWon = true
 	get_viewport().get_camera_3d().isRaycastActive = false
 	
-	camera.position = Vector3(212.9612, 752.3766, 291.2384) # Start position
-	camera.set_new_pivot(null)
-	
 	start_snow()
+	
+	camera.position = Vector3(212.9792, 752.366, 291.236) # Start position
+	camera.set_new_pivot(%SnowGlobe5)

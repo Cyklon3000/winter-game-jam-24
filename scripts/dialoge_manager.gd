@@ -1,19 +1,18 @@
 extends Control
 
-var areaText:String = ""
-@onready var textArea:Label = %TextArea
-var isAnimating:bool = false
-var animationProgress:float = 0
-var animationDuration:float = 0
-var animationFrame:int = 0
+var areaText: String = ""
+@onready var textArea: Label = %TextArea
+var isAnimating: bool = false
+var animationProgress: float = 0
+var animationDuration: float = 0
+var animationFrame: int = 0
 
-@onready var button:Button = %ContinueButton
+@onready var button: Button = %ContinueButton
 
-@onready var portrait:TextureRect = %Portrait
+@onready var portrait: TextureRect = %Portrait
 
-@onready var sound1:AudioStreamPlayer = $Sounds/Plop1
-@onready var sound2:AudioStreamPlayer = $Sounds/Plop2
-@onready var sound3:AudioStreamPlayer = $Sounds/Plop3
+var plopSoundIndex: int = 0
+@export var plopSounds: Array[AudioStreamPlayer]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -44,7 +43,7 @@ func _animate_dialoge_(delta: float) -> void:
 		
 		# Only every second frames and gap at spaces
 		if is_alphanumeric(get_ending(newAreaText, 3)) and (animationFrame % 2 == 0 or animationFrame % 3 == 1):
-			play_random_plop()
+			play_plop_sound()
 		
 		animationFrame += 1
 	
@@ -79,25 +78,19 @@ func set_portrait(newPortrait:Texture2D) -> void:
 	portrait.texture = newPortrait
 
 
-func play_random_plop(pitch_variation: float = 0.05) -> void:
-	# Create an array of sound nodes
-	var sounds = [sound1, sound2, sound3]
+func play_plop_sound(pitch_variation: float = 0.05) -> void:
+		# Select any except last
+	plopSoundIndex = (plopSoundIndex + (1 + randi() % (len(plopSounds) - 1))) % len(plopSounds)
+	var selected_sound = plopSounds[plopSoundIndex]
 	
-	# Randomly select a sound
-	var selected_sound = sounds[randi() % sounds.size()]
-	
-	# Randomize pitch
 	var original_pitch = selected_sound.pitch_scale
 	selected_sound.pitch_scale = original_pitch * randf_range(1 - pitch_variation, 1 + pitch_variation)
 	
-	# Reduce Volume
 	selected_sound.volume_db = -18
 	
-	# Play the selected sound
 	selected_sound.play()
 	
 	# Reset pitch back to original after playing
-	# This ensures the next play will start with the base pitch again
 	await selected_sound.finished
 	selected_sound.pitch_scale = original_pitch
 

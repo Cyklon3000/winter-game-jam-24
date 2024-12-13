@@ -4,7 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://dbacumk57h7i3" path="res://audio/plop/plop2.wav" id="3_6ko8d"]
 [ext_resource type="AudioStream" uid="uid://dl8nmn4yx5l0i" path="res://audio/plop/plop3.wav" id="4_3xwqr"]
 
-[node name="DialogeManager" type="Control"]
+[node name="DialogeManager" type="Control" node_paths=PackedStringArray("plopSounds")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_uyykl")
+plopSounds = [NodePath("Sounds/Plop1"), NodePath("Sounds/Plop2"), NodePath("Sounds/Plop3")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1

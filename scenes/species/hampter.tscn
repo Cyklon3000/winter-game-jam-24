@@ -361,7 +361,7 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_cicpy")
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_obyev"]
-size = Vector3(0.643799, 0.88031, 0.504761)
+size = Vector3(0.767212, 0.88031, 0.7258)
 
 [node name="Hampter" type="Node3D"]
 script = ExtResource("1_fgt50")
@@ -420,5 +420,5 @@ skeleton = NodePath("")
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0108643, 0.413239, -0.00543213)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0508422, 0.413239, -0.0614776)
 shape = SubResource("BoxShape3D_obyev")

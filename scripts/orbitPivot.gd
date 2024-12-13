@@ -40,7 +40,9 @@ func _get_height_clamp_(orbitDistance:float) -> Array[float]:
 	]
 
 
-func _input(event: InputEvent) -> void:	
+func _input(event: InputEvent) -> void:
+	if not isRaycastActive: return
+	
 	# Orbit Movement (Right Click Drag)
 	if event is InputEventMouseMotion and Input.is_mouse_button_pressed(MOUSE_BUTTON_RIGHT):
 		rotationVelocity.x = -event.relative.x * rotationSpeed

@@ -492,7 +492,7 @@ theme_override_constants/margin_top = 80
 
 [node name="Label3" type="Label" parent="WelcomeMessage/VBoxContainer/MarginContainer"]
 layout_mode = 2
-text = "Setuerung und Anleitung falls nötig auf itch.io"
+text = "Steuerung und Anleitung falls nötig auf itch.io"
 label_settings = SubResource("LabelSettings_k8885")
 horizontal_alignment = 1
 
@@ -508,7 +508,7 @@ light_color = Color(0.79, 0.888, 1, 1)
 sky_mode = 1
 
 [node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, -2.98023e-08, 0, 2.98023e-08, 1, 617.421, 952.116, 742.492)
+transform = Transform3D(0.707107, -0.298836, 0.640856, 0, 0.906308, 0.422618, -0.707107, -0.298836, 0.640856, 278.033, 1015.99, 1015.81)
 near = 0.001
 script = ExtResource("1_eiblw")
 
@@ -840,7 +840,7 @@ transform = Transform3D(0.0698525, -0.00736309, -0.444484, -0.012562, 0.449726, 
 
 [node name="Elf1" parent="SnowGlobe1/SnowGlobe2/SnowGlobe3/SnowGlobe4/SnowGlobe5" instance=ExtResource("35_dgh6t")]
 transform = Transform3D(-0.120067, -0.00374815, 0.219249, 0.0256618, 0.248006, 0.0182928, -0.217774, 0.0312907, -0.118724, -0.34375, 1.35547, -0.462891)
-dialoge = Array[String](["Ohne das Passwort bleibt die Schneemaschiene aus! Und mit ihr der Schnee. Ganz sicher!"])
+dialoge = Array[String](["Wenn wir hier das Passwort nicht eingeben bleibt die Schneemaschiene aus! Und mit ihr der Schnee. Ganz sicher!"])
 
 [node name="Elf2" parent="SnowGlobe1/SnowGlobe2/SnowGlobe3/SnowGlobe4/SnowGlobe5" instance=ExtResource("35_dgh6t")]
 transform = Transform3D(-0.0674825, -0.0217933, -0.239731, -0.0220684, 0.248485, -0.016377, 0.239706, 0.0167413, -0.0689972, 1.80664, 1.35547, -0.454102)
